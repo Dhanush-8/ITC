@@ -1,0 +1,1 @@
+ID,salesOrderItem_ID,committedDeliveryDate,promisedDeliveryDate,actualDeliveryDate,deliveryQty,pgiQty,invoiceQty,invoiceAmount,currency,status,statusDate,remarks,createdAt,createdBy,modifiedAt,modifiedBy

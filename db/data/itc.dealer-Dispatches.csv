@@ -1,0 +1,1 @@
+ID,invoiceNumber,invoiceDate,customer_ID,plant_ID,machineId,millId,shippingLocation,salesOrderItem_ID,quantity,uom,materialDescription,width,length,gsm,reamWeight,packingType,noOfReams,noOfBobbins

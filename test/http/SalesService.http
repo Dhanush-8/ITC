@@ -1,0 +1,462 @@
+@server=http://localhost:4004
+@username=no_user_found_for_roles_JobScheduler
+@password=
+
+
+### SalesOrderList
+# @name SalesOrderList_GET
+GET {{server}}/odata/v4/sales/SalesOrderList
+Authorization: Basic {{username}}:{{password}}
+
+
+### Customers
+# @name Customers_GET
+GET {{server}}/odata/v4/sales/Customers
+Authorization: Basic {{username}}:{{password}}
+
+
+### SalesOrders
+# @name SalesOrders_GET
+GET {{server}}/odata/v4/sales/SalesOrders
+Authorization: Basic {{username}}:{{password}}
+
+
+### SalesOrders
+# @name SalesOrders_POST
+POST {{server}}/odata/v4/sales/SalesOrders
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "10736015-55ce-4dc1-aba6-210c28b3c194",
+  "portalRefNo": "portalRefNo-10736015",
+  "customer": {
+    "ID": "36426311-4d0d-4865-a1f5-4f93310ffd5c"
+  },
+  "consignee": {
+    "ID": "10534710-9911-441f-915e-999460ac0ea3"
+  },
+  "poNumber": "poNumber-10736015",
+  "poDate": "2013-12-17",
+  "documentDate": "2005-12-21",
+  "convertingPartner": "convertingPartner-10736015",
+  "orderMethod": "orderMethod-10736015",
+  "fullTruck": false,
+  "loadingPattern": "loadingPattern-10736015",
+  "vehiclePreference": "vehiclePreference-10736015",
+  "paymentTerms": "paymentTerms-10736015",
+  "creditStatus": "creditStatus-10736015",
+  "commission": 6404218939001.31,
+  "incoterms": "s-10736015",
+  "freight": "freight-10736015",
+  "status": "status-10736015",
+  "fileName": "fileName-10736015",
+  "fileType": "fileType-10736015",
+  "content": "jRi32dFt6a0=",
+  "items": [
+    {
+      "ID": "89621638-6921-4e86-ae4a-ced8ee045ad4",
+      "itemNumber": "962163",
+      "billingPlant": {
+        "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+      },
+      "orderQty": 272877825771.319,
+      "uom": "62163",
+      "reqDeliveryDate": "2008-07-20",
+      "deliveryAddress": "deliveryAddress-8962163",
+      "endUse": "endUse-8962163",
+      "convertingPartner": "convertingPartner-8962163",
+      "price": 2192578940829.14,
+      "currency": "62163",
+      "paymentTerms": "paymentTerms-8962163",
+      "itemStatus": "itemStatus-8962163",
+      "specification": [
+        {
+          "ID": "18004258-0521-498f-a596-1dea8051b7ca",
+          "width": 29472438.76,
+          "length": 41357883.34,
+          "reelInnerDiameter": 43883162.82,
+          "reelOuterDiameter": 32482175.3,
+          "grainAnyWay": true,
+          "vehiclePreference": "vehiclePreference-18004258",
+          "subPacking": "subPacking-18004258",
+          "secPacking": "secPacking-18004258",
+          "rollOD": 16156395.23
+        }
+      ],
+      "pricingConditions": [
+        {
+          "ID": "28345687-7c51-47d0-96b1-a6b687c6d4e8",
+          "conditionType": "e-28345687",
+          "amount": 2032715886278.93,
+          "currency": "45687",
+          "conditionUnit": "nditionUnit-28345687",
+          "conditionValue": 5819110353072.47
+        },
+        {
+          "ID": "28345688-8ef5-426f-b3b7-2c465e141191",
+          "conditionType": "e-28345688",
+          "amount": 2467462112090.38,
+          "currency": "45688",
+          "conditionUnit": "nditionUnit-28345688",
+          "conditionValue": 1015931986999.32
+        }
+      ],
+      "createdAt": "2005-10-24T00:00:00.000Z",
+      "createdBy": "createdBy.5c38z@example.net",
+      "modifiedAt": "2009-05-15T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.5c38z@example.org"
+    },
+    {
+      "ID": "8962164a-62fb-4d54-8ddf-38fb9649dd2e",
+      "itemNumber": "962164",
+      "billingPlant": {
+        "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+      },
+      "orderQty": 48646771803.195,
+      "uom": "62164",
+      "reqDeliveryDate": "2003-03-16",
+      "deliveryAddress": "deliveryAddress-8962164",
+      "endUse": "endUse-8962164",
+      "convertingPartner": "convertingPartner-8962164",
+      "price": 4642847971391.35,
+      "currency": "62164",
+      "paymentTerms": "paymentTerms-8962164",
+      "itemStatus": "itemStatus-8962164",
+      "specification": [
+        {
+          "ID": "29628356-d7bf-4206-aadc-61e6f4d91d56",
+          "width": 1666399.59,
+          "length": 71883788.58,
+          "reelInnerDiameter": 27167325.26,
+          "reelOuterDiameter": 11182747.55,
+          "grainAnyWay": true,
+          "vehiclePreference": "vehiclePreference-29628356",
+          "subPacking": "subPacking-29628356",
+          "secPacking": "secPacking-29628356",
+          "rollOD": 72611687.36
+        }
+      ],
+      "pricingConditions": [
+        {
+          "ID": "19933432-4c3c-44a3-ba66-9d0c512e4d4d",
+          "conditionType": "e-19933432",
+          "amount": 7308240745438.03,
+          "currency": "33432",
+          "conditionUnit": "nditionUnit-19933432",
+          "conditionValue": 1058507145048.4
+        },
+        {
+          "ID": "19933433-0666-40d7-95b3-d8dd616a9d61",
+          "conditionType": "e-19933433",
+          "amount": 3739590903351.79,
+          "currency": "33433",
+          "conditionUnit": "nditionUnit-19933433",
+          "conditionValue": 4762622369158.29
+        }
+      ],
+      "createdAt": "2011-09-29T00:00:00.000Z",
+      "createdBy": "createdBy.5c390@example.net",
+      "modifiedAt": "2013-12-15T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.5c390@example.com"
+    }
+  ]
+}
+
+
+### SalesOrders
+# @name SalesOrders_PATCH
+PATCH {{server}}/odata/v4/sales/SalesOrders/10736015-55ce-4dc1-aba6-210c28b3c194
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "10736015-55ce-4dc1-aba6-210c28b3c194",
+  "portalRefNo": "portalRefNo-10736015",
+  "customer": {
+    "ID": "36426311-4d0d-4865-a1f5-4f93310ffd5c"
+  },
+  "consignee": {
+    "ID": "10534710-9911-441f-915e-999460ac0ea3"
+  },
+  "poNumber": "poNumber-10736015",
+  "poDate": "2013-12-17",
+  "documentDate": "2005-12-21",
+  "convertingPartner": "convertingPartner-10736015",
+  "orderMethod": "orderMethod-10736015",
+  "fullTruck": false,
+  "loadingPattern": "loadingPattern-10736015",
+  "vehiclePreference": "vehiclePreference-10736015",
+  "paymentTerms": "paymentTerms-10736015",
+  "creditStatus": "creditStatus-10736015",
+  "commission": 6404218939001.31,
+  "incoterms": "s-10736015",
+  "freight": "freight-10736015",
+  "status": "status-10736015",
+  "fileName": "fileName-10736015",
+  "fileType": "fileType-10736015",
+  "content": "jRi32dFt6a0=",
+  "items": [
+    {
+      "ID": "89621638-6921-4e86-ae4a-ced8ee045ad4",
+      "itemNumber": "962163",
+      "billingPlant": {
+        "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+      },
+      "orderQty": 272877825771.319,
+      "uom": "62163",
+      "reqDeliveryDate": "2008-07-20",
+      "deliveryAddress": "deliveryAddress-8962163",
+      "endUse": "endUse-8962163",
+      "convertingPartner": "convertingPartner-8962163",
+      "price": 2192578940829.14,
+      "currency": "62163",
+      "paymentTerms": "paymentTerms-8962163",
+      "itemStatus": "itemStatus-8962163",
+      "specification": [
+        {
+          "ID": "18004258-0521-498f-a596-1dea8051b7ca",
+          "width": 29472438.76,
+          "length": 41357883.34,
+          "reelInnerDiameter": 43883162.82,
+          "reelOuterDiameter": 32482175.3,
+          "grainAnyWay": true,
+          "vehiclePreference": "vehiclePreference-18004258",
+          "subPacking": "subPacking-18004258",
+          "secPacking": "secPacking-18004258",
+          "rollOD": 16156395.23
+        }
+      ],
+      "pricingConditions": [
+        {
+          "ID": "28345687-7c51-47d0-96b1-a6b687c6d4e8",
+          "conditionType": "e-28345687",
+          "amount": 2032715886278.93,
+          "currency": "45687",
+          "conditionUnit": "nditionUnit-28345687",
+          "conditionValue": 5819110353072.47
+        },
+        {
+          "ID": "28345688-8ef5-426f-b3b7-2c465e141191",
+          "conditionType": "e-28345688",
+          "amount": 2467462112090.38,
+          "currency": "45688",
+          "conditionUnit": "nditionUnit-28345688",
+          "conditionValue": 1015931986999.32
+        }
+      ],
+      "createdAt": "2005-10-24T00:00:00.000Z",
+      "createdBy": "createdBy.5c38z@example.net",
+      "modifiedAt": "2009-05-15T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.5c38z@example.org"
+    },
+    {
+      "ID": "8962164a-62fb-4d54-8ddf-38fb9649dd2e",
+      "itemNumber": "962164",
+      "billingPlant": {
+        "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+      },
+      "orderQty": 48646771803.195,
+      "uom": "62164",
+      "reqDeliveryDate": "2003-03-16",
+      "deliveryAddress": "deliveryAddress-8962164",
+      "endUse": "endUse-8962164",
+      "convertingPartner": "convertingPartner-8962164",
+      "price": 4642847971391.35,
+      "currency": "62164",
+      "paymentTerms": "paymentTerms-8962164",
+      "itemStatus": "itemStatus-8962164",
+      "specification": [
+        {
+          "ID": "29628356-d7bf-4206-aadc-61e6f4d91d56",
+          "width": 1666399.59,
+          "length": 71883788.58,
+          "reelInnerDiameter": 27167325.26,
+          "reelOuterDiameter": 11182747.55,
+          "grainAnyWay": true,
+          "vehiclePreference": "vehiclePreference-29628356",
+          "subPacking": "subPacking-29628356",
+          "secPacking": "secPacking-29628356",
+          "rollOD": 72611687.36
+        }
+      ],
+      "pricingConditions": [
+        {
+          "ID": "19933432-4c3c-44a3-ba66-9d0c512e4d4d",
+          "conditionType": "e-19933432",
+          "amount": 7308240745438.03,
+          "currency": "33432",
+          "conditionUnit": "nditionUnit-19933432",
+          "conditionValue": 1058507145048.4
+        },
+        {
+          "ID": "19933433-0666-40d7-95b3-d8dd616a9d61",
+          "conditionType": "e-19933433",
+          "amount": 3739590903351.79,
+          "currency": "33433",
+          "conditionUnit": "nditionUnit-19933433",
+          "conditionValue": 4762622369158.29
+        }
+      ],
+      "createdAt": "2011-09-29T00:00:00.000Z",
+      "createdBy": "createdBy.5c390@example.net",
+      "modifiedAt": "2013-12-15T00:00:00.000Z",
+      "modifiedBy": "modifiedBy.5c390@example.com"
+    }
+  ]
+}
+
+
+### SalesOrders
+# @name SalesOrders_DELETE
+DELETE {{server}}/odata/v4/sales/SalesOrders/10736015-55ce-4dc1-aba6-210c28b3c194
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Consignees
+# @name Consignees_GET
+GET {{server}}/odata/v4/sales/Consignees
+Authorization: Basic {{username}}:{{password}}
+
+
+### SalesOrderItems
+# @name SalesOrderItems_GET
+GET {{server}}/odata/v4/sales/SalesOrderItems
+Authorization: Basic {{username}}:{{password}}
+
+
+### SalesOrderItems
+# @name SalesOrderItems_POST
+POST {{server}}/odata/v4/sales/SalesOrderItems
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "89621638-6921-4e86-ae4a-ced8ee045ad4",
+  "itemNumber": "962163",
+  "billingPlant": {
+    "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+  },
+  "orderQty": 272877825771.319,
+  "uom": "62163",
+  "reqDeliveryDate": "2008-07-20",
+  "deliveryAddress": "deliveryAddress-8962163",
+  "endUse": "endUse-8962163",
+  "convertingPartner": "convertingPartner-8962163",
+  "price": 2192578940829.14,
+  "currency": "62163",
+  "paymentTerms": "paymentTerms-8962163",
+  "itemStatus": "itemStatus-8962163",
+  "specification": [
+    {
+      "ID": "18004258-0521-498f-a596-1dea8051b7ca",
+      "width": 29472438.76,
+      "length": 41357883.34,
+      "reelInnerDiameter": 43883162.82,
+      "reelOuterDiameter": 32482175.3,
+      "grainAnyWay": true,
+      "vehiclePreference": "vehiclePreference-18004258",
+      "subPacking": "subPacking-18004258",
+      "secPacking": "secPacking-18004258",
+      "rollOD": 16156395.23
+    }
+  ],
+  "pricingConditions": [
+    {
+      "ID": "28345687-7c51-47d0-96b1-a6b687c6d4e8",
+      "conditionType": "e-28345687",
+      "amount": 2032715886278.93,
+      "currency": "45687",
+      "conditionUnit": "nditionUnit-28345687",
+      "conditionValue": 5819110353072.47
+    },
+    {
+      "ID": "28345688-8ef5-426f-b3b7-2c465e141191",
+      "conditionType": "e-28345688",
+      "amount": 2467462112090.38,
+      "currency": "45688",
+      "conditionUnit": "nditionUnit-28345688",
+      "conditionValue": 1015931986999.32
+    }
+  ]
+}
+
+
+### SalesOrderItems
+# @name SalesOrderItems_PATCH
+PATCH {{server}}/odata/v4/sales/SalesOrderItems/89621638-6921-4e86-ae4a-ced8ee045ad4
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "89621638-6921-4e86-ae4a-ced8ee045ad4",
+  "itemNumber": "962163",
+  "billingPlant": {
+    "ID": "10519122-3eb2-4865-97fb-8bc3a8f6d8ee"
+  },
+  "orderQty": 272877825771.319,
+  "uom": "62163",
+  "reqDeliveryDate": "2008-07-20",
+  "deliveryAddress": "deliveryAddress-8962163",
+  "endUse": "endUse-8962163",
+  "convertingPartner": "convertingPartner-8962163",
+  "price": 2192578940829.14,
+  "currency": "62163",
+  "paymentTerms": "paymentTerms-8962163",
+  "itemStatus": "itemStatus-8962163",
+  "specification": [
+    {
+      "ID": "18004258-0521-498f-a596-1dea8051b7ca",
+      "width": 29472438.76,
+      "length": 41357883.34,
+      "reelInnerDiameter": 43883162.82,
+      "reelOuterDiameter": 32482175.3,
+      "grainAnyWay": true,
+      "vehiclePreference": "vehiclePreference-18004258",
+      "subPacking": "subPacking-18004258",
+      "secPacking": "secPacking-18004258",
+      "rollOD": 16156395.23
+    }
+  ],
+  "pricingConditions": [
+    {
+      "ID": "28345687-7c51-47d0-96b1-a6b687c6d4e8",
+      "conditionType": "e-28345687",
+      "amount": 2032715886278.93,
+      "currency": "45687",
+      "conditionUnit": "nditionUnit-28345687",
+      "conditionValue": 5819110353072.47
+    },
+    {
+      "ID": "28345688-8ef5-426f-b3b7-2c465e141191",
+      "conditionType": "e-28345688",
+      "amount": 2467462112090.38,
+      "currency": "45688",
+      "conditionUnit": "nditionUnit-28345688",
+      "conditionValue": 1015931986999.32
+    }
+  ]
+}
+
+
+### SalesOrderItems
+# @name SalesOrderItems_DELETE
+DELETE {{server}}/odata/v4/sales/SalesOrderItems/89621638-6921-4e86-ae4a-ced8ee045ad4
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+
+### Plants
+# @name Plants_GET
+GET {{server}}/odata/v4/sales/Plants
+Authorization: Basic {{username}}:{{password}}
+
+
+### scheduleEmail
+# @name scheduleEmail_POST
+POST {{server}}/odata/v4/sales/scheduleEmail
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{}

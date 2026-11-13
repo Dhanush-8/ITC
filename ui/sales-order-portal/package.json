@@ -1,0 +1,14 @@
+{
+  "name": "sales-order-portal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone SAPUI5 sales order application for the ITC dealer portal.",
+  "scripts": {
+    "start": "ui5 serve --open index.html",
+    "build": "ui5 build --clean-dest"
+  },
+  "devDependencies": {
+    "@sap/ux-ui5-tooling": "^1.0.0",
+    "@ui5/cli": "^4.0.33"
+  }
+}

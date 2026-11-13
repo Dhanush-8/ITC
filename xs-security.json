@@ -1,0 +1,55 @@
+{
+  "xsappname": "itc-dealer-portal",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "View"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Manage"
+    },
+    {
+      "name": "$XSAPPNAME.JobScheduler",
+      "description": "Allows Job Scheduler to call the app",
+      "grant-as-authority-to-apps": ["$XSSERVICENAME(itc-scheduler)"]
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Viewer",
+      "scope-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Admin",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "DealerPortal_Viewer",
+      "description": "Dealer Portal viewer",
+      "role-template-references": ["$XSAPPNAME.Viewer"]
+    },
+    {
+      "name": "DealerPortal_Admin",
+      "description": "Dealer Portal admin",
+      "role-template-references": ["$XSAPPNAME.Admin"]
+    }
+  ],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://*.hana.ondemand.com/**",
+      "http://localhost:5000/**",
+      "https://*.cfapps.us10-001.hana.ondemand.com/**"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "itc-dealer-portal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "cds-serve",
+    "hybrid": "cds watch --profile hybrid",
+    "build": "cds build --production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-salesordermanagement": "cds watch --open salesordermanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-salesorder": "cds watch --open salesorder/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-sales-order-portal": "cds watch --open com.itc.dealer.salesorderportal/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.16.2",
+    "@cap-js/hana": "^3",
+    "@cap-js/sqlite": "^3.1.2",
+    "@sap/cds": "^10.2.2",
+    "@sap/xssec": "^4.16.0",
+    "exceljs": "^4.4.0",
+    "express": "^5.3.0",
+    "sap-cf-mailer": "^0.0.5"
+  },
+  "devDependencies": {
+    "@sap/cds-dk": "^10.2.0",
+    "cds-plugin-ui5": "^0.17.0"
+  },
+  "cds": {
+    "requires": {
+      "[hybrid]": {
+        "auth": "xsuaa",
+        "db": {
+          "kind": "sqlite",
+          "credentials": {
+            "url": ":memory:"
+          }
+        }
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      }
+    }
+  }
+}
