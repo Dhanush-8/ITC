@@ -1,24 +1,24 @@
 const cds = require("@sap/cds");
+const payments = require("./mock/payments");
 
 module.exports = class FinanceService extends cds.ApplicationService {
   async init() {
-    const { PaymentAdjustments } = cds.entities("itc.finance");
+    // -----------------------------------------------------------------------
+    // Payments overview list (dummy data, no persistence)
+    // -----------------------------------------------------------------------
+    this.on("getPayments", () => payments.list());
 
-    // Bound action: streams the attached document of a payment / adjustment.
-    this.on("downloadDocument", PaymentAdjustments, async (req) => {
-      const { ID } = req.params[0] || {};
-      if (!ID) return req.reject(400, "Payment / adjustment ID is required");
+    // -----------------------------------------------------------------------
+    // Single payment for the detail page
+    // -----------------------------------------------------------------------
+    this.on("getPayment", (req) => {
+      const { ID } = req.data || {};
+      if (!ID) return req.reject(400, "Payment ID is required");
 
-      const record = await SELECT.one
-        .from(PaymentAdjustments)
-        .columns("fileName", "fileType", "content")
-        .where({ ID });
+      const payment = payments.find(ID);
+      if (!payment) return req.reject(404, `Payment ${ID} not found`);
 
-      if (!record || !record.content) {
-        return req.reject(404, "No document attached to this payment / adjustment");
-      }
-
-      return record.content;
+      return payment;
     });
 
     return super.init();
