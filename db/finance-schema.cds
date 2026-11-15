@@ -2,9 +2,6 @@ namespace itc.finance;
 
 using { cuid, managed } from '@sap/cds/common';
 
-// ---------------------------------------------------------------------------
-// Reusable types (value helps / fixed values are derived from these enums)
-// ---------------------------------------------------------------------------
 
 type PaymentType : String(30) enum {
     ADVANCE     = 'Advance';
