@@ -1,16 +1,11 @@
 const cds = require("@sap/cds");
 const payments = require("./mock/payments");
+const invoiceStatus = require("./mock/invoice-status");
 
 module.exports = class FinanceService extends cds.ApplicationService {
   async init() {
-    // -----------------------------------------------------------------------
-    // Payments overview list (dummy data, no persistence)
-    // -----------------------------------------------------------------------
     this.on("getPayments", () => payments.list());
 
-    // -----------------------------------------------------------------------
-    // Single payment for the detail page
-    // -----------------------------------------------------------------------
     this.on("getPayment", (req) => {
       const { ID } = req.data || {};
       if (!ID) return req.reject(400, "Payment ID is required");
@@ -19,6 +14,18 @@ module.exports = class FinanceService extends cds.ApplicationService {
       if (!payment) return req.reject(404, `Payment ${ID} not found`);
 
       return payment;
+    });
+
+    this.on("getInvoiceStatuses", () => invoiceStatus.list());
+
+    this.on("getInvoiceStatus", (req) => {
+      const { ID } = req.data || {};
+      if (!ID) return req.reject(400, "Invoice ID is required");
+
+      const invoice = invoiceStatus.find(ID);
+      if (!invoice) return req.reject(404, `Invoice ${ID} not found`);
+
+      return invoice;
     });
 
     return super.init();

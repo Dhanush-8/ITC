@@ -1,9 +1,3 @@
-// ---------------------------------------------------------------------------
-// Dummy data for the Payments sub-module.
-// This file is the only place that needs to change when ECC integration lands:
-// replace the rows below (or the two helpers) with the ECC response.
-// ---------------------------------------------------------------------------
-
 const rows = [
   {
     ID: "f0000000-0000-0000-0000-000000000001",
@@ -146,7 +140,6 @@ const rows = [
     status: "Draft",
     lastUpdated: "2026-01-20T16:50:00.000Z",
     remarks: "Awaiting documents from dealer",
-    // no documents: tests the empty state in the UI
     documents: [],
   },
   {
@@ -195,10 +188,9 @@ const rows = [
   },
 ];
 
-// Return copies so one request cannot mutate the fixture.
 const toApi = (row) => ({
   ...row,
-  selected: false, // checkbox is UI state only
+  selected: false,
   documentCount: row.documents.length,
   documents: row.documents.map((document) => ({ ...document })),
 });

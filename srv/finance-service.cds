@@ -1,41 +1,56 @@
 using itc.finance as db from '../db/finance-schema';
 
-// ---------------------------------------------------------------------------
-// API response types for the Payments sub-module.
-// These are plain types: no entity, no table, no CSV seeding.
-// ---------------------------------------------------------------------------
-
 type PaymentDocumentRow : {
-    fileName     : String(255);   // e.g. payment-advice-0001.pdf
-    documentType : String(50);    // e.g. Payment Advice, Bank Receipt
-    size         : Integer;       // bytes
+    fileName     : String(255);
+    documentType : String(50);
+    size         : Integer;
     uploadedOn   : Timestamp;
 };
 
 type PaymentRow : {
     ID              : UUID;
-    selected        : Boolean;      // checkbox (row selection) - UI only
-    refNo           : String(30);   // Payment / Adjustment Ref. No.
+    selected        : Boolean;
+    refNo           : String(30);
     submittedOn     : Date;
     paymentType     : db.PaymentType;
     instrumentType  : db.InstrumentType;
-    instrumentUtrNo : String(50);   // Instrument / UTR No.
+    instrumentUtrNo : String(50);
     paymentDate     : Date;
     amount          : Decimal(15,2);
     currency        : String(5);
-    documentCount   : Integer;      // Documents (list column)
+    documentCount   : Integer;
     documents       : array of PaymentDocumentRow;
     status          : db.PaymentStatus;
-    lastUpdated     : Timestamp;    // Last Updated
+    lastUpdated     : Timestamp;
     remarks         : String(500);
+};
+
+type InvoiceStatusRow : {
+    ID                : UUID;
+    selected          : Boolean;
+    invoiceNo         : String(30);
+    customer          : String(255);
+    docNo             : String(30);
+    docTypeName       : String(100);
+    partialSettlement : Boolean;
+    docType           : String(20);
+    docDate           : Date;
+    dueDate           : Date;
+    paymentTerm       : String(100);
+    docAmount         : Decimal(15,2);
+    balanceAmount     : Decimal(15,2);
+    currency          : String(5);
+    overdue           : Integer;
 };
 
 service FinanceService @(path: '/finance') {
 
-    // Payments overview list. Returns dummy data for now, ECC later.
     function getPayments() returns array of PaymentRow;
 
-    // Single payment (detail page) by ID.
     function getPayment(ID: UUID) returns PaymentRow;
+
+    function getInvoiceStatuses() returns array of InvoiceStatusRow;
+
+    function getInvoiceStatus(ID: UUID) returns InvoiceStatusRow;
 
 }

@@ -5,4 +5,4 @@ cds.on("bootstrap", (app) => {
     app.use(cov2ap());
 });
  
-module. Exports = cds.server;
+module.exports = cds.server;

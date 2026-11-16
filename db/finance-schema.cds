@@ -1,10 +1,5 @@
 namespace itc.finance;
 
-// ---------------------------------------------------------------------------
-// Types only - no persistence (tables) for the finance module.
-// Real data will be fetched from ECC later; the API contract below stays.
-// ---------------------------------------------------------------------------
-
 type PaymentType : String(30) enum {
     ADVANCE     = 'Advance';
     INVOICE     = 'Invoice';

@@ -1,5 +1,6 @@
 @baseUrl = http://localhost:4004/finance
 @paymentAdjustmentId = f0000000-0000-0000-0000-000000000001
+@invoiceStatusId = a0000000-0000-0000-0000-000000000002
 
 ### List payments / adjustments
 GET {{baseUrl}}/PaymentAdjustments?$select=refNo,submittedOn,paymentType,instrumentType,instrumentUtrNo,paymentDate,amount,currency,fileName,status,modifiedAt
@@ -12,3 +13,7 @@ POST {{baseUrl}}/PaymentAdjustments({{paymentAdjustmentId}})/FinanceService.down
 Content-Type: application/json
 
 {}
+
+GET {{baseUrl}}/getInvoiceStatuses()
+
+GET {{baseUrl}}/getInvoiceStatus(ID={{invoiceStatusId}})
