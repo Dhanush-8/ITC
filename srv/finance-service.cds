@@ -43,6 +43,22 @@ type InvoiceStatusRow : {
     overdue           : Integer;
 };
 
+type ClaimRow : {
+    ID            : UUID;
+    selected      : Boolean;
+    claimNumber   : String(30);
+    claimYear     : Integer;
+    claimType     : String(50);
+    subClaimType  : String(50);
+    invoiceNumber : String(30);
+    docDate       : Date;
+    businessArea  : String(50);
+    consignee     : String(255);
+    claimValue    : Decimal(15,2);
+    currency      : String(5);
+    status        : String(30);
+};
+
 service FinanceService @(path: '/finance') {
 
     function getPayments() returns array of PaymentRow;
@@ -52,5 +68,9 @@ service FinanceService @(path: '/finance') {
     function getInvoiceStatuses() returns array of InvoiceStatusRow;
 
     function getInvoiceStatus(ID: UUID) returns InvoiceStatusRow;
+
+    function getClaims() returns array of ClaimRow;
+
+    function getClaim(ID: UUID) returns ClaimRow;
 
 }

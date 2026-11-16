@@ -1,6 +1,7 @@
 const cds = require("@sap/cds");
 const payments = require("./mock/payments");
 const invoiceStatus = require("./mock/invoice-status");
+const claims = require("./mock/claims");
 
 module.exports = class FinanceService extends cds.ApplicationService {
   async init() {
@@ -26,6 +27,18 @@ module.exports = class FinanceService extends cds.ApplicationService {
       if (!invoice) return req.reject(404, `Invoice ${ID} not found`);
 
       return invoice;
+    });
+
+    this.on("getClaims", () => claims.list());
+
+    this.on("getClaim", (req) => {
+      const { ID } = req.data || {};
+      if (!ID) return req.reject(400, "Claim ID is required");
+
+      const claim = claims.find(ID);
+      if (!claim) return req.reject(404, `Claim ${ID} not found`);
+
+      return claim;
     });
 
     return super.init();
