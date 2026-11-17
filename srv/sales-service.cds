@@ -1,6 +1,6 @@
 using itc.dealer as db from '../db/schema';
 
-service SalesService {
+service SalesService @(requires: 'authenticated-user') {
 
     @readonly
     entity SalesOrderList as select from db.SalesOrderItems {
@@ -71,5 +71,6 @@ service SalesService {
 
     @readonly entity PaperMachines as projection on db.PaperMachines;
     @readonly entity PackingTypes  as projection on db.PackingTypes;
+
 }
 

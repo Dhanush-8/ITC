@@ -32,6 +32,14 @@
   },
   "cds": {
     "requires": {
+      "ECC_API": {
+        "kind": "rest",
+        "credentials": { "url": "https://jsonplaceholder.typicode.com" }
+      },
+      "S4_API": {
+        "kind": "rest",
+        "credentials": { "url": "https://jsonplaceholder.typicode.com" }
+      },
       "[hybrid]": {
         "auth": "xsuaa",
         "db": {
