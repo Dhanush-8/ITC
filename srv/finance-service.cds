@@ -59,7 +59,7 @@ type ClaimRow : {
     status        : String(30);
 };
 
-service FinanceService @(path: '/finance') {
+service FinanceService {
 
     function getPayments() returns array of PaymentRow;
 
