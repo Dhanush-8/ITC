@@ -53,6 +53,7 @@ entity SalesOrders : cuid, managed {
 
     customer        : Association to Customers not null;
     consignee       : Association to Consignees not null;
+    document        : Association to OrderDocuments;
 
     poNumber        : String(40) not null;
     poDate          : Date not null;
@@ -327,4 +328,12 @@ entity OrderStatusUpdates : cuid, managed {
     status        : String(30);
     statusDate    : Timestamp;
     remarks       : String(500);
+}
+
+entity OrderDocuments : cuid, managed {
+  documentNumber : String(8) @mandatory @assert.unique;
+  date: Date;
+  fileName   : String(200);
+  mimeType   : String(100) default 'application/pdf';
+  dmsObjectId : String(100);     // CMIS objectId
 }

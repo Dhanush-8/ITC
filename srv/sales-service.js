@@ -1,10 +1,36 @@
 const cds = require("@sap/cds");
 const { SELECT } = require("@sap/cds/lib/ql/cds-ql");
+const erp = require("./lib/erp-context");
 const SapCfMailer = require("sap-cf-mailer").default;
 const ExcelJS = require("exceljs");
 
 class SalesService extends cds.ApplicationService {
   async init() {
+    this.before("*", async (req) => {
+      try {
+        req.erp = await erp.resolveErp(req); // { code: 'PSPD', destination: 'ERP_PSPD' }
+      } catch (e) {
+        return req.reject(e.code || 500, e.message);
+      }
+    });
+
+    //************************************ importan ****************************//
+    this.on("READ", "SalesOrders", async (req) => {
+      const backend = await cds.connect.to(req.erp.destination);
+      // return backend.run(req.query);
+
+      const rows = await backend.run(
+        SELECT.from(A_SalesOrder)
+          .columns(
+            "SalesOrder",
+            "SoldToParty",
+            "TotalNetAmount",
+            "OverallSDProcessStatus",
+          )
+          .limit(req.query.SELECT.limit?.rows?.val ?? 50),
+      );
+    });
+
     const db = cds.entities("itc.dealer");
 
     const {
