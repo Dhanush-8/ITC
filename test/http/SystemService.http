@@ -1,0 +1,45 @@
+@server=http://localhost:4004
+# @username=alice
+# @password=
+
+
+### Systems
+# @name Systems_GET
+GET {{server}}/odata/v4/system/Systems
+# Authorization: Basic {{username}}:{{password}}
+
+
+### Systems
+# @name Systems_POST
+POST {{server}}/odata/v2/system/Systems
+Content-Type: application/json
+# Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "28443831-624f-488b-8a24-0a68c4f3cbf7",
+  "name": "Fake data you can rely on",
+  "label": "Fake data you can rely on",
+  "url": "https://jsonplaceholder.typicode.com/posts/2"
+}
+
+
+
+### Systems
+# @name Systems_PATCH
+PATCH {{server}}/odata/v4/system/Systems/28443831-624f-488b-8a24-0a68c4f3cbf6
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
+
+{
+  "ID": "28443831-624f-488b-8a24-0a68c4f3cbf6",
+  "name": "name-28443831",
+  "label": "label-28443831",
+  "url": "url-28443831"
+}
+
+
+### Systems
+# @name Systems_DELETE
+DELETE {{server}}/odata/v4/system/Systems/28443831-624f-488b-8a24-0a68c4f3cbf6
+Content-Type: application/json
+Authorization: Basic {{username}}:{{password}}
