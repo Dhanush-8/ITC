@@ -1,3 +1,6 @@
 {
-    "SAP HANA Database Explorer.ShowXsAdvancedConnections": true
+    "SAP HANA Database Explorer.ShowXsAdvancedConnections": true,
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.editorDecoration.template": "${authorName} (${authorDateAgo})",
+    "git.blame.statusBarItem.enabled": true
 }
