@@ -1,0 +1,4 @@
+code,label,destination,active
+code,label,destination,active
+PSPD,PSPD,ERP_PSPD,true
+LALCO,LALCO,ERP_LALCO,true

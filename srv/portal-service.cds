@@ -22,6 +22,7 @@ service PortalService {
     }
 
     function me()                returns MeResult;
-    action   setErp(erp: String) returns MeResult;
+    action   selectErp(erp : String) returns MeResult;
+
 
 }

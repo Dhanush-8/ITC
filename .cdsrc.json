@@ -1,0 +1,35 @@
+{
+  "erp": {
+    "systems": [
+      { "code": "PSPD",  "label": "PSPD",  "service": "ERP_PSPD"  },
+      { "code": "LALCO", "label": "LALCO", "service": "ERP_LALCO" }
+    ]
+  },
+
+  "[development]": {
+    "requires": {
+      "ERP_PSPD":  { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "http://localhost:9001/sap/opu/odata/sap/API_SALES_ORDER_SRV" } },
+      "ERP_LALCO": { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "http://localhost:9002/sap/opu/odata/sap/API_SALES_ORDER_SRV" } }
+    }
+  },
+
+  "[qa]": {
+    "requires": {
+      "ERP_PSPD":  { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "https://pspd-qa.itc.in:44300/sap/opu/odata/sap/API_SALES_ORDER_SRV" } },
+      "ERP_LALCO": { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "https://lalco-qa.itc.in:44300/sap/opu/odata/sap/API_SALES_ORDER_SRV" } }
+    }
+  },
+
+  "[production]": {
+    "requires": {
+      "ERP_PSPD":  { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "https://pspd.itc.in:44300/sap/opu/odata/sap/API_SALES_ORDER_SRV" } },
+      "ERP_LALCO": { "kind": "odata-v2", "model": "srv/external/API_SALES_ORDER_SRV",
+                     "credentials": { "url": "https://lalco.itc.in:44300/sap/opu/odata/sap/API_SALES_ORDER_SRV" } }
+    }
+  }
+}

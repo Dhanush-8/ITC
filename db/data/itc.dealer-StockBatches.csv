@@ -1,1 +1,1 @@
-ID,batchNumber,bundleNumber,material_ID,plant_ID,paperMachine_ID,packingType_ID,batchQty,availableQty,uom,width,length,innerDiameter,outerDiameter,stockType,createdAt,createdBy,modifiedAt,modifiedBy
+ID,batchNumber,bundleNumber,material_ID,plant_ID,paperMachine_ID,packingType_ID,batchQty,availableQty,uom,width,length,innerDiameter,outerDiameter,stockType,stockLogRef,gsm,age,netWeight,upload_ID,createdAt,createdBy,modifiedAt,modifiedBy
