@@ -3,13 +3,18 @@ const { SELECT } = require("@sap/cds/lib/ql/cds-ql");
 const erp = require("./lib/erp-context");
 const SapCfMailer = require("sap-cf-mailer").default;
 const ExcelJS = require("exceljs");
+const  { getLogger } = require('./utils/logger');
+const { message } = require("@sap/cds/lib/log/cds-error");
+const LOG = getLogger('itc.sales');
 
 class SalesService extends cds.ApplicationService {
   async init() {
     this.before("*", async (req) => {
       try {
         req.erp = await erp.resolveErp(req); // { code: 'PSPD', destination: 'ERP_PSPD' }
+        LOG.info("Initializing the constructor")
       } catch (e) {
+        LOG.error("Sales handler initialzation is failed " , {code: e.code, message: e.message})
         return req.reject(e.code || 500, e.message);
       }
     });

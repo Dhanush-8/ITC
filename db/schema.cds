@@ -1,19 +1,21 @@
 namespace itc.dealer;
-using { cuid, managed } from '@sap/cds/common';
+
+using {cuid, managed} from '@sap/cds/common';
 
 entity Customers : cuid, managed {
 
     customerCode : String(10);
     customerName : String(100);
-    orders: Association to many SalesOrders on orders.customer = $self;
+    orders       : Association to many SalesOrders
+                       on orders.customer = $self;
 
 }
 
-entity Consignees: cuid {
+entity Consignees : cuid {
     consigneeCode : String(10);
-    name : String(100);
-    city : String(100);
-    address : String(100);
+    name          : String(100);
+    city          : String(100);
+    address       : String(100);
 }
 
 entity Plants : cuid {
@@ -48,101 +50,118 @@ entity OrderTypes : cuid {
 
 entity SalesOrders : cuid, managed {
 
-    portalRefNo     : String(20);
-    orderType       : Association to OrderTypes;
+    portalRefNo       : String(20);
+    orderType         : Association to OrderTypes          @mandatory;
 
-    customer        : Association to Customers not null;
-    consignee       : Association to Consignees not null;
-    document        : Association to OrderDocuments;
+    customer          : Association to Customers not null  @mandatory;
+    consignee         : Association to Consignees not null @mandatory;
+    document          : Association to OrderDocuments;
 
-    poNumber        : String(40) not null;
-    poDate          : Date not null;
-    documentDate    : Date;
+    poNumber          : String(40)                         @mandatory;
+    poDate            : Date                               @mandatory;
+    documentDate      : Date;
 
-    endUseSegment   : Association to EndUseSegments;
-    convertingPartner : String(30);
+    endUseSegment     : Association to EndUseSegments      @mandatory;
+    convertingPartner : String(30)                         @mandatory;
 
-    orderMethod     : String(30);
+    orderMethod       : String(30)                         @mandatory enum {
+        MTO = 'MTO';
+        MTS = 'MTS';
+        QSR = 'QSR';
+        QSC_BASE_AVAILABLE = 'QSR BASE Available';
+        QSC_BASE_IN_MIT = 'QSC Base in MIT';
+        QSC_BASE_AT_MILL = 'QSC Base at Mill';
+        QSC_BASE_TO_BE_MADE = 'QSC Base to be made';
+    };
 
-    fullTruck       : Boolean;
-    loadingPattern  : String(30);
-    vehiclePreference : String(50);
+    fullTruck         : Boolean                            @mandatory;
+    loadingPattern    : String(30)                         @mandatory enum {
+        AnyPattern;
+        Horizontal;
+        Vertical;
+    };
+    vehiclePreference : String(50)                         @mandatory;
 
-    paymentTerms    : String(30);
-    creditStatus    : String(30);
+    paymentTerms      : String(30);
+    creditStatus      : String(30);
 
-    commission      : Decimal(15,2);
-    incoterms       : String(10);
-    freight         : String(100);
+    commission        : Decimal(15, 2);
+    incoterms         : String(10);
+    freight           : String(100);
 
-    status          : String(30);
+    status            : String(30);
 
-    fileName: String;
-    fileType: String @Core.IsMediaType;
-    content: LargeBinary @Core.MediaType: fileType
-                         @Core.ContentDisposition.FileName: fileName;
-                         
-    items : Composition of many SalesOrderItems
-        on items.salesOrder = $self;
+    fileName          : String;
+    fileType          : String                             @Core.IsMediaType;
+    content           : LargeBinary                        @Core.MediaType                  : fileType
+                                                           @Core.ContentDisposition.FileName: fileName;
+
+    items             : Composition of many SalesOrderItems
+                            on items.salesOrder = $self;
 }
 
 
 entity SalesOrderItems : cuid, managed {
 
-    salesOrder : Association to SalesOrders not null;
+    salesOrder        : Association to SalesOrders not null;
 
-    itemNumber  : String(6) not null;
+    itemNumber        : String(6) not null;
 
-    material    : Association to Materials not null;
-    billingPlant : Association to Plants not null;
-    paperMachine : Association to PaperMachines;
+    material          : Association to Materials not null;
+    billingPlant      : Association to Plants not null;
+    paperMachine      : Association to PaperMachines;
 
-    orderQty    : Decimal(15,3) not null;
-    uom         : String(5);
+    orderQty          : Decimal(15, 3) not null;
+    uom               : String(5);
 
-    reqDeliveryDate : Date;
+    reqDeliveryDate   : Date;
 
-    deliveryAddress : String(255);
+    deliveryAddress   : String(255);
 
-    endUse      : String(100);
-    endUseSegment : Association to EndUseSegments;
+    endUse            : String(100);
+    endUseSegment     : Association to EndUseSegments;
 
     convertingPartner : String(30);
 
-    packingType : Association to PackingTypes;
+    packingType       : String(50) @mandatory enum {
+        BDL = 'BDL-Bundle Packing';
+        BP = 'BP-Bulk Pallet';
+        RPT = 'RPT-Ream Pallet';
+        RSA = 'RSA-STR WRP DEC PM1(R6A)';
+    };
 
-    price       : Decimal(15,2);
-    currency    : String(5);
-    paymentTerms : String(30);
+    price             : Decimal(15, 2);
+    currency          : String(5);
+    paymentTerms      : String(30);
 
-    itemStatus  : String(30);
+    itemStatus        : String(30);
 
-    specification : Composition of one ItemSpecifications
-        on specification.salesOrderItem = $self;
+    specification     : Composition of one ItemSpecifications
+                            on specification.salesOrderItem = $self;
 
     pricingConditions : Composition of many PricingConditions
-        on pricingConditions.salesOrderItem = $self;
+                            on pricingConditions.salesOrderItem = $self;
 }
 
 
 entity ItemSpecifications : cuid {
 
-    salesOrderItem : Association to SalesOrderItems not null;
+    salesOrderItem    : Association to SalesOrderItems not null;
 
-    width       : Decimal(10,2);
-    length      : Decimal(10,2);
+    width             : Decimal(10, 2);
+    length            : Decimal(10, 2);
 
-    reelInnerDiameter : Decimal(10,2);
-    reelOuterDiameter : Decimal(10,2);
+    reelInnerDiameter : Decimal(10, 2);
+    reelOuterDiameter : Decimal(10, 2);
 
-    grainAnyWay : Boolean;
+    grainAnyWay       : Boolean;
 
     vehiclePreference : String(30);
 
-    subPacking  : String(50);
-    secPacking  : String(50);
+    subPacking        : String(50);
+    secPacking        : String(50);
 
-    rollOD      : Decimal(10,2);
+    rollOD            : Decimal(10, 2);
 }
 
 
@@ -150,10 +169,10 @@ entity PricingConditions : cuid {
     salesOrderItem : Association to SalesOrderItems;
 
     conditionType  : String(10);
-    amount         : Decimal(15,2);
+    amount         : Decimal(15, 2);
     currency       : String(5);
     conditionUnit  : String(20);
-    conditionValue : Decimal(15,2);
+    conditionValue : Decimal(15, 2);
 }
 
 entity PaperMachines : cuid {
@@ -165,47 +184,49 @@ entity PaperMachines : cuid {
 
 entity StockBatches : cuid, managed {
 
-    batchNumber : String(40);
-    bundleNumber : String(40);
+    batchNumber   : String(40);
+    bundleNumber  : String(40);
 
-    material : Association to Materials;
-    plant    : Association to Plants;
+    material      : Association to Materials;
+    plant         : Association to Plants;
 
-    paperMachine : Association to PaperMachines;
+    paperMachine  : Association to PaperMachines;
 
-    packingType : Association to PackingTypes;
+    packingType   : Association to PackingTypes;
 
-    batchQty : Decimal(15,3);
-    availableQty : Decimal(15,3);
-    uom : String(5);
+    batchQty      : Decimal(15, 3);
+    availableQty  : Decimal(15, 3);
+    uom           : String(5);
 
-    width : Decimal(10,2);
-    length : Decimal(10,2);
+    width         : Decimal(10, 2);
+    length        : Decimal(10, 2);
 
-    innerDiameter : Decimal(10,2);
-    outerDiameter : Decimal(10,2);
+    innerDiameter : Decimal(10, 2);
+    outerDiameter : Decimal(10, 2);
 
-    stockType : String(30);
+    stockType     : String(30);
 
-    stockLogRef : String(30);          
-    gsm         : Decimal(10,2);     
-    age         : Integer;             
-    netWeight   : Decimal(15,3);     
-    upload      : Association to StockLogFiles; 
+    stockLogRef   : String(30);
+    gsm           : Decimal(10, 2);
+    age           : Integer;
+    netWeight     : Decimal(15, 3);
+    upload        : Association to StockLogFiles;
 }
 
 entity StockLogFiles : cuid, managed {
 
     stockLogRef  : String(30);
     fileName     : String(255);
+
     @Core.IsMediaType
     mediaType    : String(100);
-    @Core.MediaType                   : mediaType
-    @Core.ContentDisposition.Filename : fileName
-    @Core.ContentDisposition.Type     : 'attachment'
+
+    @Core.MediaType                  : mediaType
+    @Core.ContentDisposition.Filename: fileName
+    @Core.ContentDisposition.Type    : 'attachment'
     content      : LargeBinary;
 
-    importStatus : String(30);     // Uploaded / Imported / Failed
+    importStatus : String(30); // Uploaded / Imported / Failed
     rowsImported : Integer;
     errorText    : String(1000);
 }
@@ -213,48 +234,48 @@ entity StockLogFiles : cuid, managed {
 
 entity Dispatches : cuid {
 
-    invoiceNumber : String(30);
-    invoiceDate   : Date;
+    invoiceNumber       : String(30);
+    invoiceDate         : Date;
 
-    customer      : Association to Customers;
-    plant         : Association to Plants;
+    customer            : Association to Customers;
+    plant               : Association to Plants;
 
-    machineId     : String(20);
-    millId        : String(20);
+    machineId           : String(20);
+    millId              : String(20);
 
-    shippingLocation : String(150);
+    shippingLocation    : String(150);
 
-    salesOrderItem : Association to SalesOrderItems;
+    salesOrderItem      : Association to SalesOrderItems;
 
-    quantity      : Decimal(15,3);
-    uom           : String(5);
+    quantity            : Decimal(15, 3);
+    uom                 : String(5);
 
     materialDescription : String(150);
 
-    width         : Decimal(10,2);
-    length        : Decimal(10,2);
-    gsm           : Decimal(10,2);
+    width               : Decimal(10, 2);
+    length              : Decimal(10, 2);
+    gsm                 : Decimal(10, 2);
 
-    reamWeight    : Decimal(10,3);
-    packingType   : String(30);
+    reamWeight          : Decimal(10, 3);
+    packingType         : String(30);
 
-    noOfReams     : Integer;
-    noOfBobbins   : Integer;
+    noOfReams           : Integer;
+    noOfBobbins         : Integer;
 }
 
 entity DeliveryConfirmations : cuid, managed {
 
-    dispatch : Association to Dispatches not null;
+    dispatch           : Association to Dispatches not null;
 
-    customer : Association to Customers;
+    customer           : Association to Customers;
 
-    receiptDate : Date not null;
-    receiptTime : Time not null;
+    receiptDate        : Date not null;
+    receiptTime        : Time not null;
 
-    damageQty   : Decimal(15,3);
-    remarks     : String(500);
+    damageQty          : Decimal(15, 3);
+    remarks            : String(500);
 
-    podDocument : Association to DeliveryAttachments;
+    podDocument        : Association to DeliveryAttachments;
 
     confirmationStatus : String(30);
 }
@@ -262,49 +283,49 @@ entity DeliveryConfirmations : cuid, managed {
 
 entity DeliveryAttachments : cuid, managed {
 
-    fileName : String(255);
+    fileName  : String(255);
     mediaType : String(100);
-    size : Integer;
-    content : LargeBinary;
+    size      : Integer;
+    content   : LargeBinary;
 }
 
 
 entity StockLots : cuid, managed {
 
-    lotNumber : String(30);
+    lotNumber        : String(30);
 
-    material : Association to Materials;
-    plant    : Association to Plants;
+    material         : Association to Materials;
+    plant            : Association to Plants;
 
-    stockType : String(30);
+    stockType        : String(30);
 
-    gsm       : Decimal(10,2);
-    width     : Decimal(10,2);
-    length    : Decimal(10,2);
+    gsm              : Decimal(10, 2);
+    width            : Decimal(10, 2);
+    length           : Decimal(10, 2);
 
-    packingType : Association to PackingTypes;
+    packingType      : Association to PackingTypes;
 
-    availableQty : Decimal(15,3);
-    uom : String(5);
+    availableQty     : Decimal(15, 3);
+    uom              : String(5);
 
     bidStartDateTime : Timestamp;
     bidEndDateTime   : Timestamp;
 
-    status : String(30);
+    status           : String(30);
 
-    bids : Composition of many StockLotBids
-        on bids.stockLot = $self;
+    bids             : Composition of many StockLotBids
+                           on bids.stockLot = $self;
 }
 
 
 entity StockLotBids : cuid, managed {
 
-    stockLot : Association to StockLots not null;
-    customer : Association to Customers not null;
+    stockLot  : Association to StockLots not null;
+    customer  : Association to Customers not null;
 
-    bidQty   : Decimal(15,3);
-    bidPrice : Decimal(15,2);
-    currency : String(5);
+    bidQty    : Decimal(15, 3);
+    bidPrice  : Decimal(15, 2);
+    currency  : String(5);
 
     bidStatus : String(30);
 }
@@ -312,28 +333,28 @@ entity StockLotBids : cuid, managed {
 
 entity OrderStatusUpdates : cuid, managed {
 
-    salesOrderItem : Association to SalesOrderItems;
+    salesOrderItem        : Association to SalesOrderItems;
 
     committedDeliveryDate : Date;
     promisedDeliveryDate  : Date;
     actualDeliveryDate    : Date;
 
-    deliveryQty : Decimal(15,3);
-    pgiQty      : Decimal(15,3);
+    deliveryQty           : Decimal(15, 3);
+    pgiQty                : Decimal(15, 3);
 
-    invoiceQty    : Decimal(15,3);
-    invoiceAmount : Decimal(15,2);
-    currency      : String(5);
+    invoiceQty            : Decimal(15, 3);
+    invoiceAmount         : Decimal(15, 2);
+    currency              : String(5);
 
-    status        : String(30);
-    statusDate    : Timestamp;
-    remarks       : String(500);
+    status                : String(30);
+    statusDate            : Timestamp;
+    remarks               : String(500);
 }
 
 entity OrderDocuments : cuid, managed {
-  documentNumber : String(8) @mandatory @assert.unique;
-  date: Date;
-  fileName   : String(200);
-  mimeType   : String(100) default 'application/pdf';
-  dmsObjectId : String(100);     // CMIS objectId
+    documentNumber : String(8)  @mandatory  @assert.unique;
+    date           : Date;
+    fileName       : String(200);
+    mimeType       : String(100) default 'application/pdf';
+    dmsObjectId    : String(100); // CMIS objectId
 }
